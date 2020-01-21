@@ -1,0 +1,57 @@
+#端口和初始路径配置
+server:
+  port: 8111
+  servlet:
+    context-path: /auto
+
+#项目名称
+spring:
+  application:
+  name: generator-code
+  #数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_cloud_demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456789
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#日志配置
+logging:
+  level:
+   root: info
+
+#path
+class:
+  path:
+    system: src/main/java
+    #本地项目名
+    project: com/generator/code
+    service: ${class.path.project}/service
+    service-impl: ${class.path.project}/service/impl
+    dao: ${class.path.project}/dao
+    entity: ${class.path.project}/entity
+    controller: ${class.path.project}/controller
+    #模版路径
+    template: src/main/resources/templates/freemarker
+    author: wangliang
+    #外部路径,如果不用则留空
+    outside-path: #/Users/king/workspace/spark
+    #外部项目名,如果不用则留空
+    outside-project: #com/spark/demo
+
+#mysql
+mysql:
+  jdbc:
+    drive-class: com.mysql.cj.jdbc.Driver
+    database: spring_cloud_demo
+    ip: 127.0.0.1
+    port: 3306
+    url: jdbc:mysql://${mysql.jdbc.ip}:${mysql.jdbc.port}/${mysql.jdbc.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456789
+    query: select * from
+    tables:
+    - s_user
+#    - work
+#    - oauth_code
+#    - k_mall_product

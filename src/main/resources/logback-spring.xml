@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+    <springProperty scope="context" name="logLevel" source="logging.level.root" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}| %thread | %level | %X{TRACE_ID} - %X{KEY} | %m | [%class:%line]%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- debug 日志 -->
+    <appender name="DEBUG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/debug/generator.debug.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}| %thread | %level | %X{TRACE_ID} - %X{KEY} | %m | [%class:%line]%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./logs/debug/generator.debug.log.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxHistory>100</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 接口日志 -->
+    <appender name="INTERFACE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/interface/generator.interface.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}| %thread | %level | %X{TRACE_ID} - %X{KEY} | %m | [%class:%line]%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>./logs/interface/generator.interface.log.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxHistory>100</maxHistory>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="com.generator.code" level="${logLevel}" additivity="false">
+        <appender-ref ref="DEBUG_APPENDER" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="INTERFACE_LOGGER" level="${logLevel}" additivity="false">
+        <appender-ref ref="INTERFACE_APPENDER" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="${logLevel}" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="${logLevel}" />
+    <logger name="org.hibernate.SQL" level="${logLevel}" />
+    <logger name="org.hibernate.type" level="${logLevel}" />
+    <logger name="org.hibernate.engine.QueryParameters" level="${logLevel}" />
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="${logLevel}" />
+
+    <root level="INFO">
+        <appender-ref ref="DEBUG_APPENDER" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
