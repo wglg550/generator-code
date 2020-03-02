@@ -10,7 +10,7 @@ spring:
   name: generator-code
   #数据源配置
   datasource:
-    url: jdbc:mysql://localhost:3306/spring_cloud_demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://172.17.0.2:3306/spring_cloud_demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456789
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -44,7 +44,7 @@ mysql:
   jdbc:
     drive-class: com.mysql.cj.jdbc.Driver
     database: spring_cloud_demo
-    ip: 127.0.0.1
+    ip: 172.17.0.2
     port: 3306
     url: jdbc:mysql://${mysql.jdbc.ip}:${mysql.jdbc.port}/${mysql.jdbc.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
