@@ -2,7 +2,6 @@ package com.generator.code;
 
 import com.generator.code.freemarker.FreemarkerUtil;
 import com.generator.code.jdbc.JdbcConnect;
-import com.google.common.collect.Multimap;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +10,7 @@ import org.springframework.jdbc.support.MetaDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.sql.SQLException;
-import java.util.Map;
+import java.io.IOException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,15 +23,15 @@ public class GeneratorCodeApplicationTests {
     @Resource
     FreemarkerUtil freemarkerUtil;
 
-    @Test
-    public void springJdbcConn() throws SQLException, MetaDataAccessException {
-        Multimap<String, Map<String, String>> map = jdbcConnect.springJdbcConn();
-        log.info("map.size:{}", map.size());
-//        jdbcConnect.jdbcConn();
-    }
-
 //    @Test
-//    public void freemarkerUtil() throws IOException {
-//        freemarkerUtil.createCode();
+//    public void springJdbcConn() throws SQLException, MetaDataAccessException {
+//        Multimap<String, Map<String, String>> map = jdbcConnect.springJdbcConn();
+//        log.info("map.size:{}", map.size());
+////        jdbcConnect.jdbcConn();
 //    }
+
+    @Test
+    public void freemarkerUtil() throws IOException, MetaDataAccessException {
+        freemarkerUtil.createCode();
+    }
 }

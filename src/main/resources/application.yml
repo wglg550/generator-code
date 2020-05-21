@@ -10,7 +10,7 @@ spring:
   name: generator-code
   #数据源配置
   datasource:
-    url: jdbc:mysql://172.17.0.2:3306/spring_cloud_demo?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/tc_print?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456789
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -35,23 +35,41 @@ class:
     template: src/main/resources/templates/freemarker
     author: wangliang
     #外部路径,如果不用则留空
-    outside-path: #/Users/king/workspace/spark
+    outside-path: /Users/king/git/teachcloud-service/teachcloud-print
     #外部项目名,如果不用则留空
-    outside-project: #com/spark/demo
+    outside-project: com/qmth/teachcloud/print
 
 #mysql
 mysql:
   jdbc:
     drive-class: com.mysql.cj.jdbc.Driver
-    database: spring_cloud_demo
-    ip: 172.17.0.2
+    database: tc_print
+    ip: localhost
     port: 3306
     url: jdbc:mysql://${mysql.jdbc.ip}:${mysql.jdbc.port}/${mysql.jdbc.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456789
     query: select * from
     tables:
-    - s_user
-#    - work
-#    - oauth_code
-#    - k_mall_product
+    - tc_p_attachment
+    - tc_p_basic_card_rule
+    - tc_p_basic_course
+    - tc_p_basic_privilege
+    - tc_p_basic_card_rule
+    - tc_p_basic_role
+    - tc_p_basic_role_privilege
+    - tc_p_basic_user
+    - tc_p_basic_user_course
+    - tc_p_basic_user_role
+    - tc_p_basic_warn_rule
+    - tc_p_card
+    - tc_p_card_detail
+    - tc_p_exam
+    - tc_p_exam_course_user
+    - tc_p_exam_detail
+    - tc_p_exam_student
+    - tc_p_exam_task
+    - tc_p_exam_task_detail
+    - tc_p_card
+    - tc_p_card_detail
+    - tc_p_school

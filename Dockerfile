@@ -19,6 +19,10 @@ FROM java:8
 VOLUME /tmp
 # 下面jar包的名称为springboot项目打包完成的jar包名称
 
-ADD generator-code-1.0-SNAPSHOT.jar app.jar
-EXPOSE 8111
-ENTRYPOINT ["java","-jar","/app.jar"]
+#ADD generator-code-1.0-SNAPSHOT.jar app.jar
+#EXPOSE 8111
+#ENTRYPOINT ["java","-jar","/app.jar"]
+
+COPY ./generator-code-1.0-SNAPSHOT.jar /app/app.jar
+ADD /Users/king/workspace/generator-code/src/main/resources/application.yml /app/application.yml
+ENTRYPOINT ["java" ,"-Djava.security.egd=file:/dev/./urandom --spring.config.location=classpath:file:/app/application-yml","-jar","/app/app.jar"]
